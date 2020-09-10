@@ -7,10 +7,10 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
-        'Click',
+        'Click', 'requests','asyncio','aiohttp'
     ],
     entry_points='''
         [console_scripts]
-        cliweather=cliweather_subhan.main:cli
+        cliweather=main:cli
     ''',
 )

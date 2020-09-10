@@ -14,14 +14,14 @@ def get_part_of_day(hour):
         else
         "night"
     )
-    
+
 def get_weather_str_from_list(list_weather):
     return ','.join(
     list(map(lambda x: x['main'], list_weather))
     )
 
 def get_coord(city:str):
-    cities = "city.id.json"
+    cities = "src/city.id.json"
     data = json.loads(open(cities).read())
     return list(filter(lambda x:x["name"].lower() == city.lower(),data))
 
