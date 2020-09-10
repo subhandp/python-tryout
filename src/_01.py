@@ -14,6 +14,7 @@ def cli():
 @click.option('--fahrenheit', help='set fahrenheit temperature',is_flag=True)
 @click.option('--temp', help='Temperature Now',is_flag=True)
 
+
 def weather(city,celcius,fahrenheit,temp):
     cor = get_coord(city)
     lat = cor[0]["coord"]["lat"]

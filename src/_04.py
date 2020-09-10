@@ -1,7 +1,7 @@
 import json,requests
 from datetime import datetime
-
-from util import get_coord, get_formated_from_timestamp, get_current_weather_hourly,get_part_of_day
+import click
+from src.util import get_coord, get_formated_from_timestamp, get_current_weather_hourly,get_part_of_day
 
 cor = get_coord("jakarta")
 if len(cor):
