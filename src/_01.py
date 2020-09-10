@@ -1,7 +1,22 @@
 import json,requests
+import click
 from datetime import datetime
 
-from util import get_coord, get_formated_from_timestamp, get_current_weather
+from util import get_coord, get_formated_from_timestamp, get_current_weather,get_weather_str_from_list
+
+
+
+@click.group()
+def cli():
+    pass
+@cli.command(name="weather")
+@click.argument("city",type=str)
+def weather(city):
+    cor = get_coord("jakarta")
+    lat = cor[0]["coord"]["lat"]
+    lon = cor[0]["coord"]["lon"]
+
+data = get_current_weather(lat,lon) 
 
 cor = get_coord("jakarta")
 if len(cor):
@@ -9,16 +24,12 @@ if len(cor):
 else:
     print('nothing')
 
-# api_key = "1835a413e20e6815f4ebd37b86aad3cf"
 lat = cor[0]["coord"]["lat"]
 lon = cor[0]["coord"]["lon"]
-# url = "https://api.openweathermap.org/data/2.5/weather?lat=%s&lon=%s&appid=%s"  % (lat, lon, api_key)
-# response = requests.get(url)
-# data = json.loads(response.text)
+
 data = get_current_weather(lat,lon)
-weathers = ','.join(
-    list(map(lambda x: x['main'], data["weather"]))
-    )
+
+weathers = get_weather_str_from_list(data["weather"])
 timestamp_sunset = data["sys"]["sunset"]
 timestamp_sunrise = data["sys"]["sunrise"]
 temperature = data["main"]["temp"]
