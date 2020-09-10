@@ -32,8 +32,8 @@ def get_formated_from_timestamp(timestamp, format : str = None):
         format = "%A, %B %d, %Y %H:%M:%S"
     return date_time.strftime(format)
 
-def get_current_weather(lat,lon):
-    url = "https://api.openweathermap.org/data/2.5/weather?lat=%s&lon=%s&appid=%s"  % (lat, lon, api_key)
+def get_current_weather(lat,lon,temp="default"):
+    url = "https://api.openweathermap.org/data/2.5/weather?lat=%s&lon=%s&appid=%s&units=%s"  % (lat, lon, api_key, temp)
     response = requests.get(url)
     return json.loads(response.text)
 
